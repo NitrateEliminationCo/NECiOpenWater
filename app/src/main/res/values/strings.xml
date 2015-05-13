@@ -4,4 +4,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="readingButtonText">Take Reading</string>
+
+    <string-array name="water_unit_types">
+        <item>Standard</item>
+        <item>US EPA</item>
+        <item>WHO</item>
+        <item>US EPA Nitrite</item>
+        <item>WHO Nitrite</item>
+    </string-array>
 </resources>

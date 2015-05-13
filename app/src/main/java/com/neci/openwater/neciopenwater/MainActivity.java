@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
     Button readingButton;
+    Spinner waterSpinner;
     ProgressBar progressBar;
     TextView readingDisplay;
 
@@ -52,6 +53,10 @@ public class MainActivity extends Activity {
 
         progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
         readingDisplay = (TextView) this.findViewById(R.id.readingDisplay);
+        waterSpinner = (Spinner) this.findViewById(R.id.unit_types);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.water_unit_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        waterSpinner.setAdapter(adapter);
     }
 
     public void takeUniqueReading(View v)
@@ -119,12 +124,24 @@ public class MainActivity extends Activity {
 
     public String convertReading(double reading)
     {
-            //do math here
-            reading = -1 * Math.log10(reading);
-            reading = roundTwoDecimals((reading - .0091) / .0673);
+        //do math here
+        reading = -1 * Math.log10(reading);
+        reading = (reading - .0091) / .0673;
 
-            return (reading + "ppm Nitrate-N\n (Nitrate: Water)");
+        String units = (String)waterSpinner.getSelectedItem();
 
+        if (units.equals("Standard"))
+            return (roundTwoDecimals(reading) + "ppm Nitrate-N");
+        else if (units.equals("US EPA"))
+            return (roundTwoDecimals(reading) + "ppm Nitrate-N");
+        else if (units.equals("WHO"))
+            return (roundTwoDecimals((reading * 4.4)) + "ppm Nitrate");
+        else if (units.equals("US EPA Nitrite"))
+            return (roundTwoDecimals(reading) + "ppm Nitrite-N");
+        else if (units.equals("WHO Nitrite"))
+            return (roundTwoDecimals((reading * 3.3)) + "ppm Nitrite");
+
+        return (roundTwoDecimals(reading) + "ppm Nitrate-N");
     }
 
     private double roundTwoDecimals(double d)
