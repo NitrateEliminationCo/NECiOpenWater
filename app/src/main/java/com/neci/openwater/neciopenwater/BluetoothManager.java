@@ -201,7 +201,7 @@ public class BluetoothManager {
             return;
         }
 
-        beginListenForData();
+        //beginListenForData();
     }
 
     private void writeData(String data) {

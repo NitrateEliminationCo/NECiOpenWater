@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
     {
         //do math here
         reading = -1 * Math.log10(reading);
-        reading = (reading - .0091) / .0673;
+        reading = (reading - 0.0007) / 0.0695;
 
         String units = (String)waterSpinner.getSelectedItem();
 
