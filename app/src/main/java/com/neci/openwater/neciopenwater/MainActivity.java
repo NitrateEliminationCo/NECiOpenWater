@@ -140,6 +140,8 @@ public class MainActivity extends Activity {
             return (roundTwoDecimals(reading) + "ppm Nitrite-N");
         else if (units.equals("WHO Nitrite"))
             return (roundTwoDecimals((reading * 3.3)) + "ppm Nitrite");
+        else if (units.equals("Absorption"))
+            return (roundTwoDecimals((reading * .0695)+.0007) + "");
 
         return (roundTwoDecimals(reading) + "ppm Nitrate-N");
     }
